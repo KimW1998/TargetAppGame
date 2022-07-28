@@ -1,4 +1,4 @@
-import { TextInput, View, Text, StyleSheet, Alert, useWindowDimensions } from "react-native";
+import { TextInput, View, Text, StyleSheet, Alert, useWindowDimensions, KeyboardAvoidingView, ScrollView } from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import { useState } from "react";
 import Colors from "./constants/colors";
@@ -38,6 +38,8 @@ const {width, height} = useWindowDimensions();
 
 
   return (
+    <ScrollView style={styles.screen}>
+    <KeyboardAvoidingView style={styles.screen} behavior='position'>
     <View style={[styles.rootContainer, {marginTop: marginTopDistance}]}>
       <Title>Guess My Number</Title>
       <Card style={styles.InputContainer}>
@@ -61,12 +63,17 @@ const {width, height} = useWindowDimensions();
         </View>
       </Card>
     </View>
+    </KeyboardAvoidingView>
+    </ScrollView>
   );
 }
 
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
   rootContainer: {
     flex: 1,
     alignItems: "center",
