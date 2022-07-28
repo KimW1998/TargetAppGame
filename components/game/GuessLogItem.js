@@ -30,6 +30,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   itemText: {
-    fontfamily: 'open-sans',
+    fontFamily: 'open-sans',
   },
 });

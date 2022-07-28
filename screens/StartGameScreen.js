@@ -1,4 +1,13 @@
-import { TextInput, View, Text, StyleSheet, Alert, useWindowDimensions, KeyboardAvoidingView, ScrollView } from "react-native";
+import {
+  TextInput,
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  useWindowDimensions,
+  KeyboardAvoidingView,
+  ScrollView,
+} from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import { useState } from "react";
 import Colors from "./constants/colors";
@@ -9,7 +18,7 @@ import InstructionText from "../components/ui/instructionText";
 function StartGameScreen({ onPickNumber }) {
   const [enteredNumber, setEnteredNumber] = useState("");
 
-const {width, height} = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
 
   function numberInputHandler(enteredText) {
     setEnteredNumber(enteredText);
@@ -34,36 +43,37 @@ const {width, height} = useWindowDimensions();
     onPickNumber(chosenNumber);
   }
 
-  const marginTopDistance = height <  380 ? 30 : 100
-
+  const marginTopDistance = height < 380 ? 30 : 100;
 
   return (
     <ScrollView style={styles.screen}>
-    <KeyboardAvoidingView style={styles.screen} behavior='position'>
-    <View style={[styles.rootContainer, {marginTop: marginTopDistance}]}>
-      <Title>Guess My Number</Title>
-      <Card style={styles.InputContainer}>
-        <InstructionText>Enter a number</InstructionText>
-        <TextInput
-          style={styles.numberInput}
-          maxLength={2}
-          keyboardType="number-pad"
-          autoCapitalize="none"
-          autoCorrect={false}
-          onChangeText={numberInputHandler}
-          value={enteredNumber}
-        />
-        <View style={styles.buttonsContainer}>
-          <View style={styles.buttoncontainer}>
-            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
-          </View>
-          <View style={styles.buttoncontainer}>
-            <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
-          </View>
+      <KeyboardAvoidingView style={styles.screen} behavior="position">
+        <View style={[styles.rootContainer, { marginTop: marginTopDistance }]}>
+          <Title>Guess My Number</Title>
+          <Card style={styles.InputContainer}>
+            <InstructionText>Enter a number</InstructionText>
+            <TextInput
+              style={styles.numberInput}
+              maxLength={2}
+              keyboardType="number-pad"
+              autoCapitalize="none"
+              autoCorrect={false}
+              onChangeText={numberInputHandler}
+              value={enteredNumber}
+            />
+            <View style={styles.buttonsContainer}>
+              <View style={styles.buttoncontainer}>
+                <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+              </View>
+              <View style={styles.buttoncontainer}>
+                <PrimaryButton onPress={confirmInputHandler}>
+                  Confirm
+                </PrimaryButton>
+              </View>
+            </View>
+          </Card>
         </View>
-      </Card>
-    </View>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
     </ScrollView>
   );
 }
