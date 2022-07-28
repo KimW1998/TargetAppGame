@@ -2,8 +2,9 @@ import { TextInput, View, Text, StyleSheet, Alert } from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import { useState } from "react";
 import Colors from "./constants/colors";
+import Title from "../components/ui/Title";
 
-function StartGameScreen({onPickNumber}) {
+function StartGameScreen({ onPickNumber }) {
   const [enteredNumber, setEnteredNumber] = useState("");
 
   function numberInputHandler(enteredText) {
@@ -27,26 +28,29 @@ function StartGameScreen({onPickNumber}) {
     }
 
     onPickNumber(chosenNumber);
-
   }
 
   return (
-    <View style={styles.InputContainer}>
-      <TextInput
-        style={styles.numberInput}
-        maxLength={2}
-        keyboardType="number-pad"
-        autoCapitalize="none"
-        autoCorrect={false}
-        onChangeText={numberInputHandler}
-        value={enteredNumber}
-      />
-      <View style={styles.buttonsContainer}>
-        <View style={styles.buttoncontainer}>
-          <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
-        </View>
-        <View style={styles.buttoncontainer}>
-          <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+    <View style={styles.rootContainer}>
+      <Title>Guess My Number</Title>
+      <View style={styles.InputContainer}>
+        <Text style={styles.instructionText}>Enter a number</Text>
+        <TextInput
+          style={styles.numberInput}
+          maxLength={2}
+          keyboardType="number-pad"
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={numberInputHandler}
+          value={enteredNumber}
+        />
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttoncontainer}>
+            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+          </View>
+          <View style={styles.buttoncontainer}>
+            <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+          </View>
         </View>
       </View>
     </View>
@@ -56,10 +60,15 @@ function StartGameScreen({onPickNumber}) {
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+    marginTop: 100,
+    alignItems: "center",
+  },
   InputContainer: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 100,
+    marginTop: 36,
     marginHorizontal: 24,
     padding: 16,
     backgroundColor: Colors.primary800,
@@ -69,6 +78,10 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 6,
     shadowOpacity: 0.25,
+  },
+  instructionText: {
+    color: Colors.accent500,
+    fontSize: 24,
   },
   numberInput: {
     textAlign: "center",
